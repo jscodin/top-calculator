@@ -1,1 +1,15 @@
 /* Make it look nice! */
+#calc-wrapper {
+  display: grid;
+  height: 600px;
+  width: 400px;
+  border: 1px solid black;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.display {
+
+}
