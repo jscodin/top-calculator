@@ -1,9 +1,15 @@
 /* Make it look nice! */
+* {
+  background: grey;
+
+}
+
 #calc-wrapper {
   display: grid;
+  background: white;
   height: 485px;
   width: 381px;
-  border: 1px solid black;
+  border: 1px solid white;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -12,9 +18,10 @@
 
 .display {
   display: block;
-  border: 1px solid red;
-  max-height: 100px;
-  max-width: 361px;
+  background: lightgray;
+  border: 1px solid black;
+  height: 80px;
+  width: 361px;
   margin: 10px;
   font-size: 80px;
 }
@@ -28,6 +35,7 @@
 }
 
 button {
+  background: white;
   min-width: 90px;
   min-height: 70px;
 }
