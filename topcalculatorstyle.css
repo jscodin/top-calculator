@@ -1,8 +1,8 @@
 /* Make it look nice! */
 #calc-wrapper {
   display: grid;
-  height: 550px;
-  width: 450px;
+  height: 485px;
+  width: 381px;
   border: 1px solid black;
   top: 50%;
   left: 50%;
@@ -14,8 +14,20 @@
   display: block;
   border: 1px solid red;
   max-height: 100px;
-  max-width: 430px;
+  max-width: 361px;
   margin: 10px;
   font-size: 80px;
+}
 
+.button-wrapper {
+  display: grid;
+  margin: 10px;
+  grid-template-rows: repeat(5, 70px,);
+  grid-template-columns: repeat(4, 90px);
+  gap: 1px;
+}
+
+button {
+  min-width: 90px;
+  min-height: 70px;
 }
