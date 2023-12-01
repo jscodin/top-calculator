@@ -32,6 +32,11 @@ console.log(mult(40, 30));
 // function operate(numA, operator, numB) {
 //   add(numA, numB);
 // }
+const digitBtns = document.querySelectorAll(".digit");
 
-
+digitBtns.forEach((button) => {
+  button.addEventListener('click', () => {
+    alert(button.id);
+  });
+});
 
