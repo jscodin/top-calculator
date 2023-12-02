@@ -41,3 +41,8 @@ digitBtns.forEach((button) => {
   });
 });
 
+const clear = document.querySelector("#clear");
+
+clear.addEventListener('click', () => {
+  disp.textContent = "";
+});
