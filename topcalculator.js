@@ -37,12 +37,19 @@ const digitBtns = document.querySelectorAll(".digit");
 
 const disp = document.querySelector(".display");
 
+let numsOnDisp;
+
 // displays digit buttons on display
-let numsOnDisp = digitBtns.forEach((button) => {
+digitBtns.forEach((button) => {
   button.addEventListener('click', () => {
-    disp.textContent += button.id;
+    if (disp.textContent.length < 8) {
+      disp.textContent += button.id
+    };
+    console.log(numsOnDisp = disp.textContent);
   });
 });
+
+console.log(numsOnDisp);
 
 // clear display using ac button
 const clear = document.querySelector("#clear");
