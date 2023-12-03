@@ -32,15 +32,19 @@ console.log(mult(40, 30));
 // function operate(numA, operator, numB) {
 //   add(numA, numB);
 // }
+// storing the digit buttons
 const digitBtns = document.querySelectorAll(".digit");
+
 const disp = document.querySelector(".display");
 
-digitBtns.forEach((button) => {
+// displays digit buttons on display
+let numsOnDisp = digitBtns.forEach((button) => {
   button.addEventListener('click', () => {
-    disp.textContent = button.id;
+    disp.textContent += button.id;
   });
 });
 
+// clear display using ac button
 const clear = document.querySelector("#clear");
 
 clear.addEventListener('click', () => {
