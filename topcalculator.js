@@ -29,9 +29,6 @@ console.log(mult(40, 30));
 // let op;
 // let num2;
 //
-// function operate(numA, operator, numB) {
-//   add(numA, numB);
-// }
 // storing the digit buttons
 const digitBtns = document.querySelectorAll(".digit");
 
@@ -45,15 +42,27 @@ digitBtns.forEach((button) => {
     if (disp.textContent.length < 8) {
       disp.textContent += button.id
     };
+    numsOnDisp = disp.textContent;
     console.log(numsOnDisp = disp.textContent);
   });
 });
-
 console.log(numsOnDisp);
+
+function operate(numA, operator, numB) {
+  add(numA, numB);
+}
+
 
 // clear display using ac button
 const clear = document.querySelector("#clear");
 
 clear.addEventListener('click', () => {
   disp.textContent = "";
+});
+
+const del = document.querySelector("#delete");
+del.addEventListener('click', () => {
+  disp.textContent = disp.textContent.slice(0, -1);
+  numsOnDisp = disp.textContent;
+  console.log(numsOnDisp = disp.textContent);
 });
