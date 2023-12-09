@@ -32,12 +32,14 @@ numbers.forEach((number) => {
       disp.textContent += number.id
       if (opr === "") {
         num1 += number.id;
+        num1 = parseInt(num1);
         console.log(num1);
       } else {
         if (disp.textContent.length < 8) {
           disp.textContent = "";
           disp.textContent += number.id;
           num2 += number.id;
+          num2 = parseInt(num2);
           console.log(num2);
         }
       }
