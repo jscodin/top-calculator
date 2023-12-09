@@ -1,41 +1,25 @@
 // the basic calculations
 // +
 function add(a, b) {
-  return a + b
-}
-console.log(add(1, 2));
-
+  console.log(a + b);
+};
 // -
 function sub(a, b) {
   return a - b
-}
-console.log(sub(100, 2));
-
+};
 // /
 function divide(a, b) {
   return a / b
-}
-console.log(divide(150, 5));
-
+};
 // *
 function mult(a, b) {
   return a * b
-}
-console.log(mult(40, 30));
+};
 
-// operations
-
-// let num1;
-// let op;
-// let num2;
-//
-// Global variables
 const btn = document.querySelectorAll("button");
 const numbers = document.querySelectorAll(".digit");
 const disp = document.querySelector(".display");
 const operator = document.querySelectorAll(".operator");
-
-
 let num1 = "";
 let num2 = "";
 let opr = "";
@@ -50,8 +34,8 @@ numbers.forEach((number) => {
         num1 += number.id;
         console.log(num1);
       } else {
-        disp.textContent = "";
         if (disp.textContent.length < 8) {
+          disp.textContent = "";
           disp.textContent += number.id;
           num2 += number.id;
           console.log(num2);
@@ -65,15 +49,16 @@ operator.forEach((button) => {
   button.addEventListener('click', (e) => {
     opr = e.target.innerText;
     console.log(opr);
+    if (opr === "=") {
+      operate(num1, num2);
+    }
   });
 });
 
 // when user presses the = sign
-function operate(numA, operator, numB) {
-
+function operate(numA, numB) {
   add(numA, numB);
-
-}
+};
 
 
 // clear display using ac button
