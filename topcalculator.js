@@ -2,6 +2,8 @@
 // +
 function add(a, b) {
   console.log(a + b);
+  // return a + b;
+  disp.textContent += a + b;
 };
 // -
 function sub(a, b) {
@@ -52,14 +54,15 @@ operator.forEach((button) => {
     opr = e.target.innerText;
     console.log(opr);
     if (opr === "=") {
-      operate(num1, num2);
+      disp.textContent = "";
+      operate();
     }
   });
 });
 
 // when user presses the = sign
-function operate(numA, numB) {
-  add(numA, numB);
+function operate() {
+  add(num1, num2);
 };
 
 
