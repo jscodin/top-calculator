@@ -66,11 +66,14 @@ function operate() {
 };
 
 
-// clear display using ac button
+// clear display & variables using ac button
 const clear = document.querySelector("#clear");
 
 clear.addEventListener('click', () => {
   disp.textContent = "";
+  num1 = "";
+  num2 = "";
+  opr = "";
 });
 // delete last number input
 const del = document.querySelector("#delete");
