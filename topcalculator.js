@@ -2,20 +2,26 @@
 // +
 function add(a, b) {
   console.log(a + b);
-  // return a + b;
   disp.textContent += a + b;
+  // return a + b;
 };
 // -
 function sub(a, b) {
-  return a - b
+  console.log(a - b);
+  disp.textContent += a - b;
+  // return a - b
 };
 // /
 function divide(a, b) {
-  return a / b
+  console.log(a / b);
+  disp.textContent += a / b;
+  // return a / b
 };
 // *
 function mult(a, b) {
-  return a * b
+  console.log(a * b);
+  disp.textContent += a * b;
+  // return a * b
 };
 
 // Global variables
