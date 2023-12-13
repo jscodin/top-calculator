@@ -28,6 +28,7 @@ function mult(a, b) {
 const btn = document.querySelectorAll("button");
 const numbers = document.querySelectorAll(".digit");
 const disp = document.querySelector(".display");
+const equals = document.querySelector("#equal");
 const operator = document.querySelectorAll(".operator");
 let num1 = "";
 let num2 = "";
@@ -59,6 +60,15 @@ numbers.forEach((number) => {
   });
 });
 
+equals.addEventListener('click', (e) => {
+  solution = e.target.innerText;
+  console.log(solution);
+  if (solution === "=") {
+    disp.textContent = "";
+    operate();
+  }
+})
+
 operator.forEach((button) => {
   button.addEventListener('click', (e) => {
     opr = e.target.innerText;
@@ -66,13 +76,21 @@ operator.forEach((button) => {
     if (opr === "=") {
       disp.textContent = "";
       operate();
-    }
+    };
   });
 });
 
 // when user presses the = sign
 function operate() {
-  add(num1, num2);
+  switch (opr) {
+    case "+":
+      add(num1, num2);
+      break;
+  }
+  // sub(num1, num2);
+  // divide(num1, num2);
+  // mult(num1, num2);
+
 };
 
 // clear display & variables using ac button
