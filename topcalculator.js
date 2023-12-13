@@ -86,11 +86,16 @@ function operate() {
     case "+":
       add(num1, num2);
       break;
+    case "-":
+      sub(num1, num2);
+      break;
+    case "/":
+      divide(num1, num2);
+      break;
+    case "*":
+      mult(num1, num2);
+      break;
   }
-  // sub(num1, num2);
-  // divide(num1, num2);
-  // mult(num1, num2);
-
 };
 
 // clear display & variables using ac button
