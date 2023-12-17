@@ -60,6 +60,7 @@ numbers.forEach((number) => {
   });
 });
 
+// runs operate fn when equals is pressed
 equals.addEventListener('click', (e) => {
   solution = e.target.innerText;
   console.log(solution);
@@ -69,18 +70,15 @@ equals.addEventListener('click', (e) => {
   }
 })
 
+// stores operators into a variable
 operator.forEach((button) => {
   button.addEventListener('click', (e) => {
     opr = e.target.innerText;
     console.log(opr);
-    if (opr === "=") {
-      disp.textContent = "";
-      operate();
-    };
   });
 });
 
-// when user presses the = sign
+// chooses which basic calc to use based on operator clicked
 function operate() {
   switch (opr) {
     case "+":
@@ -100,7 +98,6 @@ function operate() {
 
 // clear display & variables using ac button
 const clear = document.querySelector("#clear");
-
 clear.addEventListener('click', () => {
   disp.textContent = "";
   num1 = "";
@@ -108,6 +105,7 @@ clear.addEventListener('click', () => {
   opr = "";
 });
 // delete last number input
+// TODO: numbers get cleared from display but not from variable
 const del = document.querySelector("#delete");
 del.addEventListener('click', () => {
   disp.textContent = disp.textContent.slice(0, -1);
