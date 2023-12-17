@@ -75,6 +75,10 @@ operator.forEach((button) => {
   button.addEventListener('click', (e) => {
     opr = e.target.innerText;
     console.log(opr);
+    if (num1 && num2 && opr) {
+      disp.textContent = "";
+      operate();
+    }
   });
 });
 
