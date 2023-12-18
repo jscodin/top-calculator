@@ -1,7 +1,6 @@
 /* Make it look nice! */
 * {
   background: grey;
-
 }
 
 #calc-wrapper {
@@ -30,7 +29,7 @@
 .button-wrapper {
   display: grid;
   margin: 10px;
-  grid-template-rows: repeat(5, 70px,);
+  grid-template-rows: repeat(5, 70px, );
   grid-template-columns: repeat(4, 90px);
   gap: 1px;
 }
