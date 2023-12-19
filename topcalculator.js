@@ -5,8 +5,8 @@ const disp = document.querySelector(".display");
 const equals = document.querySelector("#equal");
 const operator = document.querySelectorAll(".operator");
 let currentNum = "";
-let previousNum = "";
-let opr = "";
+let previousNum = null;
+let opr = null;
 let numsCleared = false;
 
 // the basic calculations
@@ -42,7 +42,7 @@ function multiply(a, b) {
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
     if (disp.textContent.length < 8) {
-      if (opr === "") {
+      if (opr === null) {
         disp.textContent += number.id
         currentNum += number.id;
         currentNum = parseInt(currentNum);
@@ -55,9 +55,9 @@ numbers.forEach((number) => {
           numsCleared = true;
         };
         disp.textContent += number.id;
-        previousNum += number.id;
-        previousNum = parseInt(previousNum);
-        console.log(previousNum);
+        currentNum += number.id;
+        currentNum = parseInt(currentNum);
+        console.log(currentNum);
       };
     };
   });
@@ -76,8 +76,15 @@ equals.addEventListener('click', (e) => {
 // stores operators into a variable
 operator.forEach((button) => {
   button.addEventListener('click', (e) => {
+    if (opr === null) {
+      previousNum = currentNum;
+    } else if (previousNum != null) {
+      disp.textContent = "";
+      previousNum = operate(previousNum, currentNum);
+    }
     opr = e.target.innerText;
     console.log(opr);
+    currentNum = "";
     // if (num1 && num2 && opr) {
     //   disp.textContent = "";
     //   operate();
@@ -86,19 +93,19 @@ operator.forEach((button) => {
 });
 
 // chooses which basic calc to use based on operator clicked
-function operate() {
+function operate(previousNum, currentNum) {
   switch (opr) {
     case "+":
-      add(currentNum, previousNum);
+      add(previousNum, currentNum);
       break;
     case "-":
-      sub(currentNum, previousNum);
+      sub(previousNum, currentNum);
       break;
     case "/":
-      divide(currentNum, previousNum);
+      divide(previousNum, currentNum);
       break;
     case "*":
-      multiply(currentNum, previousNum);
+      multiply(previousNum, currentNum);
       break;
   }
 };
@@ -108,8 +115,8 @@ const clear = document.querySelector("#clear");
 clear.addEventListener('click', () => {
   disp.textContent = "";
   currentNum = "";
-  previousNum = "";
-  opr = "";
+  previousNum = null;
+  opr = null;
 });
 // delete last number input
 // TODO: numbers get cleared from display but not from variable
