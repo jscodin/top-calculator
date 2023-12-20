@@ -36,13 +36,10 @@ numbers.forEach((number) => {
 
 // runs operate fn when equals is pressed
 equals.addEventListener('click', (e) => {
-  solution = e.target.innerText;
-  console.log(solution);
-  if (solution === "=") {
-    disp.textContent = "";
-    operate();
-  }
-})
+  equalBtn = e.target.innerText;
+  disp.textContent = "";
+  operate(previousNum, currentNum);
+});
 
 // stores operators into a variable
 operator.forEach((button) => {
