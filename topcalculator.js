@@ -76,29 +76,25 @@ function operate(previousNum, currentNum) {
 
 // the basic calculations
 function add(a, b) {
-  // disp.textContent += a + b;
+  disp.textContent += a + b;
   return a + b
 };
 
 function sub(a, b) {
-  console.log(a - b);
   disp.textContent += a - b;
-  // currentNum += a - b;
-  // return a - b
+  return a - b
 };
 
 function divide(a, b) {
   console.log(a / b);
   disp.textContent += a / b;
-  // currentNum += a / b;
-  // return a / b
+  return a / b
 };
 
 function multiply(a, b) {
   console.log(a * b);
   disp.textContent += a * b;
-  // currentNum += a * b;
-  // return a * b
+  return a * b
 };
 
 // clear display & variables using ac button
