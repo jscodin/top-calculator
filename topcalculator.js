@@ -9,35 +9,6 @@ let previousNum = null;
 let opr = null;
 let numsCleared = false;
 
-// the basic calculations
-function add(a, b) {
-  console.log(a + b);
-  disp.textContent += a + b;
-  // currentNum = disp.textContent;
-  // return a + b;
-};
-
-function sub(a, b) {
-  console.log(a - b);
-  disp.textContent += a - b;
-  // currentNum += a - b;
-  // return a - b
-};
-
-function divide(a, b) {
-  console.log(a / b);
-  disp.textContent += a / b;
-  // currentNum += a / b;
-  // return a / b
-};
-
-function multiply(a, b) {
-  console.log(a * b);
-  disp.textContent += a * b;
-  // currentNum += a * b;
-  // return a * b
-};
-
 // displays digit buttons on display
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
@@ -81,14 +52,11 @@ operator.forEach((button) => {
     } else if (previousNum != null) {
       disp.textContent = "";
       previousNum = operate(previousNum, currentNum);
+      console.log(previousNum);
     }
     opr = e.target.innerText;
     console.log(opr);
     currentNum = "";
-    // if (num1 && num2 && opr) {
-    //   disp.textContent = "";
-    //   operate();
-    // }
   });
 });
 
@@ -96,18 +64,41 @@ operator.forEach((button) => {
 function operate(previousNum, currentNum) {
   switch (opr) {
     case "+":
-      add(previousNum, currentNum);
-      break;
+      return add(previousNum, currentNum);
     case "-":
-      sub(previousNum, currentNum);
-      break;
+      return sub(previousNum, currentNum);
     case "/":
-      divide(previousNum, currentNum);
-      break;
+      return divide(previousNum, currentNum);
     case "*":
-      multiply(previousNum, currentNum);
-      break;
+      return multiply(previousNum, currentNum);
   }
+};
+
+// the basic calculations
+function add(a, b) {
+  // disp.textContent += a + b;
+  return a + b
+};
+
+function sub(a, b) {
+  console.log(a - b);
+  disp.textContent += a - b;
+  // currentNum += a - b;
+  // return a - b
+};
+
+function divide(a, b) {
+  console.log(a / b);
+  disp.textContent += a / b;
+  // currentNum += a / b;
+  // return a / b
+};
+
+function multiply(a, b) {
+  console.log(a * b);
+  disp.textContent += a * b;
+  // currentNum += a * b;
+  // return a * b
 };
 
 // clear display & variables using ac button
