@@ -8,12 +8,14 @@ let currentNum = "";
 let previousNum = null;
 let opr = null;
 let numsCleared = false;
+let equalsCleared = false;
 
 // displays digit buttons on display
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
     if (disp.textContent.length < 8) {
       if (opr === null) {
+        clearOnNextNum();
         disp.textContent += number.id
         currentNum += number.id;
         currentNum = parseInt(currentNum);
@@ -37,6 +39,10 @@ function clearOnNextNum() {
     numsCleared = false;
     disp.textContent = "";
   }
+  if (equalsCleared) {
+    equalsCleared = false;
+    disp.textContent = "";
+  }
 }
 
 // runs operate fn when equals is pressed
@@ -44,6 +50,10 @@ equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
   disp.textContent = "";
   operate(previousNum, currentNum);
+  currentNum = "";
+  previousNum = null;
+  opr = null;
+  equalsCleared = true;
 });
 
 // stores operators into a variable
