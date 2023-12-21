@@ -19,20 +19,25 @@ numbers.forEach((number) => {
         currentNum = parseInt(currentNum);
         console.log(currentNum);
         // reset flag when number is clicked
-        numsCleared = false;
       } else {
-        if (!numsCleared && disp.textContent.length < 8) {
-          disp.textContent = "";
-          numsCleared = true;
+        if (disp.textContent.length < 8) {
+          clearOnNextNum();
+          disp.textContent += number.id;
+          currentNum += number.id;
+          currentNum = parseInt(currentNum);
+          console.log(currentNum);
         };
-        disp.textContent += number.id;
-        currentNum += number.id;
-        currentNum = parseInt(currentNum);
-        console.log(currentNum);
       };
     };
   });
 });
+
+function clearOnNextNum() {
+  if (numsCleared) {
+    numsCleared = false;
+    disp.textContent = "";
+  }
+}
 
 // runs operate fn when equals is pressed
 equals.addEventListener('click', (e) => {
@@ -54,6 +59,7 @@ operator.forEach((button) => {
     opr = e.target.innerText;
     console.log(opr);
     currentNum = "";
+    numsCleared = true;
   });
 });
 
