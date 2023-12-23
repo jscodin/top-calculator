@@ -39,19 +39,20 @@ function clearOnNextNum() {
     numsCleared = false;
     disp.textContent = "";
   }
-  if (equalsCleared) {
-    equalsCleared = false;
+  else if (equalsCleared && previousNum != "") {
     disp.textContent = "";
+    equalsCleared = false;
   }
+  equalsCleared = false;
 }
 
 // runs operate fn when equals is pressed
 equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
   disp.textContent = "";
-  operate(previousNum, currentNum);
+  previousNum = operate(previousNum, currentNum);
+  console.log(previousNum);
   currentNum = "";
-  previousNum = null;
   opr = null;
   equalsCleared = true;
 });
@@ -89,6 +90,8 @@ function operate(previousNum, currentNum) {
 
 // the basic calculations
 function add(a, b) {
+  a = parseInt(a);
+  b = parseInt(b);
   disp.textContent += a + b;
   return a + b
 };
