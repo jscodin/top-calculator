@@ -14,26 +14,16 @@ let equalsCleared = false;
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
     if (disp.textContent.length < 8) {
-      if (opr === null) {
-        clearOnNextNum();
-        disp.textContent += number.id
-        currentNum += number.id;
-        currentNum = parseInt(currentNum);
-        console.log(currentNum);
-        // reset flag when number is clicked
-      } else {
-        if (disp.textContent.length < 8) {
-          clearOnNextNum();
-          disp.textContent += number.id;
-          currentNum += number.id;
-          currentNum = parseInt(currentNum);
-          console.log(currentNum);
-        };
-      };
+      clearOnNextNum();
+      disp.textContent += number.id
+      currentNum += number.id;
+      currentNum = parseInt(currentNum);
+      console.log(currentNum);
     };
   });
 });
 
+// reset flag when number/equals btn is clicked
 function clearOnNextNum() {
   if (numsCleared) {
     numsCleared = false;
