@@ -1,6 +1,7 @@
 /* Make it look nice! */
 * {
   background: grey;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #calc-wrapper {
@@ -22,7 +23,7 @@
   height: 80px;
   width: 361px;
   margin: 10px;
-  font-size: 80px;
+  font-size: 70px;
   text-align: right;
 }
 
