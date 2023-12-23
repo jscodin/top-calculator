@@ -50,9 +50,9 @@ function clearOnNextNum() {
 equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
   disp.textContent = "";
-  previousNum = operate(previousNum, currentNum);
+  currentNum = operate(previousNum, currentNum);
   console.log(previousNum);
-  currentNum = "";
+  // currentNum = "";
   opr = null;
   equalsCleared = true;
 });
