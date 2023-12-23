@@ -93,6 +93,10 @@ function sub(a, b) {
 
 function divide(a, b) {
   console.log(a / b);
+  if (b === 0) {
+    disp.textContent += "Y u do dis?";
+    return "Y u do dis?";
+  }
   disp.textContent += a / b;
   return a / b
 };
