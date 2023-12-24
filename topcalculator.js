@@ -4,6 +4,7 @@ const numbers = document.querySelectorAll(".digit");
 const disp = document.querySelector(".display");
 const equals = document.querySelector("#equal");
 const operator = document.querySelectorAll(".operator");
+const percentageBtn = document.querySelector("#percent");
 let currentNum = "";
 let previousNum = null;
 let opr = null;
@@ -42,7 +43,6 @@ equals.addEventListener('click', (e) => {
   disp.textContent = "";
   currentNum = operate(previousNum, currentNum);
   console.log(previousNum);
-  // currentNum = "";
   opr = null;
   equalsCleared = true;
 });
@@ -64,6 +64,13 @@ operator.forEach((button) => {
   });
 });
 
+// handles % button
+percentageBtn.addEventListener('click', (e) => {
+  console.log(e.target.innerText);
+  disp.textContent = "";
+  currentNum = percentage();
+});
+
 // chooses which basic calc to use based on operator clicked
 function operate(previousNum, currentNum) {
   switch (opr) {
@@ -80,8 +87,6 @@ function operate(previousNum, currentNum) {
 
 // the basic calculations
 function add(a, b) {
-  a = parseInt(a);
-  b = parseInt(b);
   disp.textContent += a + b;
   return a + b
 };
@@ -105,6 +110,20 @@ function multiply(a, b) {
   console.log(a * b);
   disp.textContent += a * b;
   return a * b
+};
+
+function percentage() {
+  a = previousNum;
+  b = currentNum;
+  if (a && b) {
+    disp.textContent += b / 100;
+    console.log(b / 100)
+    return b / 100;
+  } else {
+    disp.textContent += b / 100;
+    console.log(b / 100);
+    return b / 100;
+  }
 };
 
 // clear display & variables using ac button
