@@ -6,7 +6,9 @@ const equals = document.querySelector("#equal");
 const operator = document.querySelectorAll(".operator");
 const percentageBtn = document.querySelector("#percent");
 const decimalBtn = document.querySelector("#decimal");
+const plusminusBtn = document.querySelector("#plusminus");
 let decimal;
+let plusminus;
 let currentNum = "";
 let previousNum = null;
 let opr = null;
@@ -84,6 +86,27 @@ decimalBtn.addEventListener('click', (e) => {
   decimal = e.target.innerText;
   disp.textContent = currentNum + decimal;
   currentNum = currentNum + ".";
+});
+
+// handles plus/minus button
+plusminusBtn.addEventListener('click', (e) => {
+  console.log(e.target.innerText);
+  if (disp.textContent === "") {
+    return
+  } else if (currentNum < 0) {
+    // converts negative num to positive
+    Math.abs(currentNum);
+  } else if (previousNum < 0) {
+    // this is to cover for when the equals btn is pressed
+    Math.abs(previousNum);
+  } else if (previousNum >= 0) {
+    disp.textContent = -previousNum;
+    previousNum = "-" + previousNum;
+    previousNum = parseFloat(previousNum);
+  }
+  disp.textContent = -currentNum;
+  currentNum = "-" + currentNum;
+  currentNum = parseFloat(currentNum);
 });
 
 // chooses which basic calc to use based on operator clicked
