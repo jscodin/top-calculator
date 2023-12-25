@@ -5,6 +5,8 @@ const disp = document.querySelector(".display");
 const equals = document.querySelector("#equal");
 const operator = document.querySelectorAll(".operator");
 const percentageBtn = document.querySelector("#percent");
+const decimalBtn = document.querySelector("#decimal");
+let decimal;
 let currentNum = "";
 let previousNum = null;
 let opr = null;
@@ -18,7 +20,7 @@ numbers.forEach((number) => {
       clearOnNextNum();
       disp.textContent += number.id
       currentNum += number.id;
-      currentNum = parseInt(currentNum);
+      currentNum = parseFloat(currentNum);
       console.log(currentNum);
     };
   });
@@ -69,6 +71,19 @@ percentageBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
   disp.textContent = "";
   currentNum = percentage();
+});
+
+// handles . button
+decimalBtn.addEventListener('click', (e) => {
+  console.log(e.target.innerText);
+  if (disp.textContent === "") {
+    return
+  } else if (disp.textContent.includes(".")) {
+    return
+  }
+  decimal = e.target.innerText;
+  disp.textContent = currentNum + decimal;
+  currentNum = currentNum + ".";
 });
 
 // chooses which basic calc to use based on operator clicked
