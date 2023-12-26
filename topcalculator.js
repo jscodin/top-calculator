@@ -96,7 +96,12 @@ plusminusBtn.addEventListener('click', (e) => {
   } else if (currentNum < 0) {
     // converts negative num to positive
     Math.abs(currentNum);
-  } else if (previousNum < 0) {
+  } else if (currentNum >= 0) {
+    disp.textContent = -currentNum;
+    currentNum = "-" + currentNum;
+    currentNum = parseFloat(currentNum);
+  }
+  else if (previousNum < 0) {
     // this is to cover for when the equals btn is pressed
     Math.abs(previousNum);
   } else if (previousNum >= 0) {
@@ -104,9 +109,6 @@ plusminusBtn.addEventListener('click', (e) => {
     previousNum = "-" + previousNum;
     previousNum = parseFloat(previousNum);
   }
-  disp.textContent = -currentNum;
-  currentNum = "-" + currentNum;
-  currentNum = parseFloat(currentNum);
 });
 
 // chooses which basic calc to use based on operator clicked
