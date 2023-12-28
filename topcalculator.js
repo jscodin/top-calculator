@@ -15,19 +15,6 @@ let opr = null;
 let numsCleared = false;
 let equalsCleared = false;
 
-// displays digit buttons on display
-numbers.forEach((number) => {
-  number.addEventListener('click', () => {
-    if (disp.textContent.length < 8) {
-      clearOnNextNum();
-      disp.textContent += number.id
-      currentNum += number.id;
-      currentNum = parseFloat(currentNum);
-      console.log(currentNum);
-    };
-  });
-});
-
 // reset flag when number/equals btn is clicked
 function clearOnNextNum() {
   if (numsCleared) {
@@ -41,7 +28,20 @@ function clearOnNextNum() {
   equalsCleared = false;
 }
 
-// runs operate fn when equals is pressed
+// handles number buttons
+numbers.forEach((number) => {
+  number.addEventListener('click', () => {
+    if (disp.textContent.length < 8) {
+      clearOnNextNum();
+      disp.textContent += number.id
+      currentNum += number.id;
+      currentNum = parseFloat(currentNum);
+      console.log(currentNum);
+    };
+  });
+});
+
+// handles equals button
 equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
   if (disp.textContent === "" || equalsCleared) {
@@ -55,7 +55,7 @@ equals.addEventListener('click', (e) => {
   }
 });
 
-// stores operators into a variable
+// handles operator buttons
 operator.forEach((button) => {
   button.addEventListener('click', (e) => {
     if (disp.textContent === "") {
@@ -85,7 +85,7 @@ percentageBtn.addEventListener('click', (e) => {
   currentNum = percentage();
 });
 
-// handles . button
+// handles decimal button
 decimalBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
   if (disp.textContent === "") {
@@ -101,7 +101,6 @@ decimalBtn.addEventListener('click', (e) => {
 // handles plus/minus button
 plusminusBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
-  //TODO: still not working, press op then plus/minus and its an issue
   if (disp.textContent === "" || currentNum === "") {
     return
   } else if (currentNum < 0) {
@@ -124,7 +123,25 @@ plusminusBtn.addEventListener('click', (e) => {
   }
 });
 
+// clear display & variables using ac button
+const clear = document.querySelector("#clear");
+clear.addEventListener('click', () => {
+  disp.textContent = "";
+  currentNum = "";
+  previousNum = null;
+  opr = null;
+});
+
+// delete last number input
+// TODO: numbers get cleared from display but not from variable
+const del = document.querySelector("#delete");
+del.addEventListener('click', () => {
+  disp.textContent = disp.textContent.slice(0, -1);
+  numsOnDisp = disp.textContent;
+});
+
 // chooses which basic calc to use based on operator clicked
+// i guess self explanatory tbf but getting used to commenting my code
 function operate(previousNum, currentNum) {
   switch (opr) {
     case "+":
@@ -138,7 +155,7 @@ function operate(previousNum, currentNum) {
   }
 };
 
-// the basic calculations
+// calculations
 function add(a, b) {
   disp.textContent += a + b;
   return a + b
@@ -179,18 +196,3 @@ function percentage() {
   }
 };
 
-// clear display & variables using ac button
-const clear = document.querySelector("#clear");
-clear.addEventListener('click', () => {
-  disp.textContent = "";
-  currentNum = "";
-  previousNum = null;
-  opr = null;
-});
-// delete last number input
-// TODO: numbers get cleared from display but not from variable
-const del = document.querySelector("#delete");
-del.addEventListener('click', () => {
-  disp.textContent = disp.textContent.slice(0, -1);
-  numsOnDisp = disp.textContent;
-});
