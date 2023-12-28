@@ -44,16 +44,23 @@ function clearOnNextNum() {
 // runs operate fn when equals is pressed
 equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
-  disp.textContent = "";
-  currentNum = operate(previousNum, currentNum);
-  console.log(previousNum);
-  opr = null;
-  equalsCleared = true;
+  if (disp.textContent === "" || equalsCleared) {
+    return
+  } else if (currentNum && previousNum) {
+    disp.textContent = "";
+    currentNum = operate(previousNum, currentNum);
+    console.log(previousNum);
+    opr = null;
+    equalsCleared = true;
+  }
 });
 
 // stores operators into a variable
 operator.forEach((button) => {
   button.addEventListener('click', (e) => {
+    if (disp.textContent === "") {
+      return
+    }
     if (opr === null) {
       previousNum = currentNum;
     } else if (previousNum != null) {
@@ -71,6 +78,9 @@ operator.forEach((button) => {
 // handles % button
 percentageBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
+  if (disp.textContent === "") {
+    return
+  }
   disp.textContent = "";
   currentNum = percentage();
 });
@@ -91,11 +101,12 @@ decimalBtn.addEventListener('click', (e) => {
 // handles plus/minus button
 plusminusBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
-  if (disp.textContent === "") {
+  //TODO: still not working, press op then plus/minus and its an issue
+  if (disp.textContent === "" || currentNum === "") {
     return
   } else if (currentNum < 0) {
     // converts negative num to positive
-    Math.abs(currentNum);
+    currentNum = Math.abs(currentNum);
   } else if (currentNum >= 0) {
     disp.textContent = -currentNum;
     currentNum = "-" + currentNum;
@@ -103,11 +114,13 @@ plusminusBtn.addEventListener('click', (e) => {
   }
   else if (previousNum < 0) {
     // this is to cover for when the equals btn is pressed
-    Math.abs(previousNum);
+    previousNum = Math.abs(previousNum);
   } else if (previousNum >= 0) {
     disp.textContent = -previousNum;
     previousNum = "-" + previousNum;
     previousNum = parseFloat(previousNum);
+  } else {
+    return
   }
 });
 
