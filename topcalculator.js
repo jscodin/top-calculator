@@ -42,6 +42,7 @@ numbers.forEach((number) => {
 });
 
 // handles equals button
+// TODO: need to figure out how to handle numbers that get too long for the display
 equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
   if (disp.textContent === "" || equalsCleared) {
@@ -86,6 +87,7 @@ percentageBtn.addEventListener('click', (e) => {
 });
 
 // handles decimal button
+// TODO: need to round up long decimal numbers
 decimalBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
   if (disp.textContent === "") {
