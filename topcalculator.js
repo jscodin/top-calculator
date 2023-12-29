@@ -108,6 +108,7 @@ plusminusBtn.addEventListener('click', (e) => {
   } else if (currentNum < 0) {
     // converts negative num to positive
     currentNum = Math.abs(currentNum);
+    disp.textContent = currentNum;
   } else if (currentNum >= 0) {
     disp.textContent = -currentNum;
     currentNum = "-" + currentNum;
@@ -116,6 +117,7 @@ plusminusBtn.addEventListener('click', (e) => {
   else if (previousNum < 0) {
     // this is to cover for when the equals btn is pressed
     previousNum = Math.abs(previousNum);
+    disp.textContent = currentNum;
   } else if (previousNum >= 0) {
     disp.textContent = -previousNum;
     previousNum = "-" + previousNum;
