@@ -29,10 +29,14 @@ function clearOnNextNum() {
 }
 
 // handles number buttons
+// TODO: need to figure out how to handle numbers that get too long for the display
+// if condition probs not doing what i think it is, that's why its failing
+// currently won't let you input the second set of numbers if the first set 
+// are at the length of 8
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
+    clearOnNextNum();
     if (disp.textContent.length < 8) {
-      clearOnNextNum();
       disp.textContent += number.id
       currentNum += number.id;
       currentNum = parseFloat(currentNum);
@@ -42,7 +46,6 @@ numbers.forEach((number) => {
 });
 
 // handles equals button
-// TODO: need to figure out how to handle numbers that get too long for the display
 equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
   if (disp.textContent === "" || equalsCleared) {
@@ -101,6 +104,11 @@ decimalBtn.addEventListener('click', (e) => {
 });
 
 // handles plus/minus button
+// TODO: bug where if you press this btn immediately after an operator btn
+// has beebn pressed after a number, it does not work
+// works every other time, i think it may require refactoring
+// most of my code to get it to work,
+// considering it is not part of the assgt im leaving as is for now lol
 plusminusBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
   if (disp.textContent === "" || currentNum === "") {
