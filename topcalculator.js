@@ -30,11 +30,11 @@ function clearOnNextNum() {
 
 // handles number buttons
 // TODO: need to figure out how to handle numbers that get too long for the display
-// if condition probs not doing what i think it is, that's why its failing
-// currently won't let you input the second set of numbers if the first set 
-// are at the length of 8
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
+    if (disp.textContent === "Y u do dis?") {
+      clearBtn();
+    };
     clearOnNextNum();
     if (disp.textContent.length < 8) {
       disp.textContent += number.id
@@ -48,9 +48,10 @@ numbers.forEach((number) => {
 // handles equals button
 equals.addEventListener('click', (e) => {
   equalBtn = e.target.innerText;
+  console.log(equalBtn);
   if (disp.textContent === "" || equalsCleared) {
     return
-  } else if (currentNum && previousNum) {
+  } else if (currentNum !== null && previousNum !== null) {
     disp.textContent = "";
     currentNum = operate(previousNum, currentNum);
     console.log(previousNum);
@@ -62,7 +63,7 @@ equals.addEventListener('click', (e) => {
 // handles operator buttons
 operator.forEach((button) => {
   button.addEventListener('click', (e) => {
-    if (disp.textContent === "") {
+    if (disp.textContent === "" || disp.textContent === "Y u do dis?") {
       return
     }
     if (opr === null) {
@@ -90,7 +91,8 @@ percentageBtn.addEventListener('click', (e) => {
 });
 
 // handles decimal button
-// TODO: need to round up long decimal numbers
+// TODO: need to figure out to how to get it show a "0" when
+// it is input before a number
 decimalBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
   if (disp.textContent === "") {
@@ -137,12 +139,14 @@ plusminusBtn.addEventListener('click', (e) => {
 
 // clear display & variables using ac button
 const clear = document.querySelector("#clear");
-clear.addEventListener('click', () => {
+clear.addEventListener('click', clearBtn);
+
+function clearBtn() {
   disp.textContent = "";
   currentNum = "";
   previousNum = null;
   opr = null;
-});
+}
 
 // delete last number input
 // TODO: numbers get cleared from display but not from variable
@@ -168,13 +172,25 @@ function operate(previousNum, currentNum) {
 };
 
 // calculations
+let result;
+
+function limitDigitsOnDisplay() {
+  if (result.toString().length > 8) {
+    result = Number.parseFloat(result).toExponential(2)
+  }
+}
+
 function add(a, b) {
-  disp.textContent += a + b;
+  result = a + b;
+  limitDigitsOnDisplay();
+  disp.textContent += result;
   return a + b
 };
 
 function sub(a, b) {
-  disp.textContent += a - b;
+  result = a - b;
+  limitDigitsOnDisplay();
+  disp.textContent += result;
   return a - b
 };
 
@@ -185,6 +201,9 @@ function divide(a, b) {
     return "Y u do dis?";
   }
   disp.textContent += a / b;
+  // result = a - b;
+  // limitDigitsOnDisplay();
+  // disp.textContent += result;
   return a / b
 };
 
