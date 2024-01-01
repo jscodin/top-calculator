@@ -29,7 +29,6 @@ function clearOnNextNum() {
 }
 
 // handles number buttons
-// TODO: need to figure out how to handle numbers that get too long for the display
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
     if (disp.textContent === "Y u do dis?") {
@@ -62,10 +61,18 @@ equals.addEventListener('click', (e) => {
 
 let operatorClear = false;
 
+// handles operator buttons
+// TODO: known bug, you can double click operators and it causes issues
+// not sure how to fix, tried several solutions and nothing has worked without
+// breaking something else. Tbf this is not part of the assgt so will leave for now
+// This is now not working at all lol
+if (disp.textContent !== "" || disp.textContent !== "Y u do dis?") {
+  operator.forEach((button) => {
+    button.addEventListener('click', operatorHandler)
+  });
+};
+
 function operatorHandler(e) {
-  if (disp.textContent === "" || disp.textContent === "Y u do dis?") {
-    return
-  }
   if (opr === null) {
     previousNum = currentNum;
   } else if (previousNum != null) {
@@ -79,30 +86,6 @@ function operatorHandler(e) {
   numsCleared = true;
   operatorClear = true;
 }
-// handles operator buttons
-// TODO: known bug, you can double click operators and it causes issues
-// not sure how to fix, tried several solutions and nothing has worked without
-// breaking something else. Tbf this is not part of the assgt so will leave for now
-operator.forEach((button) => {
-  button.addEventListener('click', operatorHandler)
-});
-//     if (disp.textContent === "" || disp.textContent === "Y u do dis?") {
-//       return
-//     }
-//     if (opr === null) {
-//       previousNum = currentNum;
-//     } else if (previousNum != null) {
-//       disp.textContent = "";
-//       previousNum = operate(previousNum, currentNum);
-//       console.log(previousNum);
-//     }
-//     opr = e.target.innerText;
-//     console.log(opr);
-//     currentNum = "";
-//     numsCleared = true;
-//     operatorClear = true;
-//   });
-// });
 
 // handles % button
 percentageBtn.addEventListener('click', (e) => {
@@ -255,4 +238,3 @@ function percentage() {
     return b / 100;
   }
 };
-
