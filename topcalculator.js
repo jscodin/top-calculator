@@ -60,25 +60,49 @@ equals.addEventListener('click', (e) => {
   }
 });
 
+let operatorClear = false;
+
+function operatorHandler(e) {
+  if (disp.textContent === "" || disp.textContent === "Y u do dis?") {
+    return
+  }
+  if (opr === null) {
+    previousNum = currentNum;
+  } else if (previousNum != null) {
+    disp.textContent = "";
+    previousNum = operate(previousNum, currentNum);
+    console.log(previousNum);
+  }
+  opr = e.target.innerText;
+  console.log(opr);
+  currentNum = "";
+  numsCleared = true;
+  operatorClear = true;
+}
 // handles operator buttons
+// TODO: known bug, you can double click operators and it causes issues
+// not sure how to fix, tried several solutions and nothing has worked without
+// breaking something else. Tbf this is not part of the assgt so will leave for now
 operator.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    if (disp.textContent === "" || disp.textContent === "Y u do dis?") {
-      return
-    }
-    if (opr === null) {
-      previousNum = currentNum;
-    } else if (previousNum != null) {
-      disp.textContent = "";
-      previousNum = operate(previousNum, currentNum);
-      console.log(previousNum);
-    }
-    opr = e.target.innerText;
-    console.log(opr);
-    currentNum = "";
-    numsCleared = true;
-  });
+  button.addEventListener('click', operatorHandler)
 });
+//     if (disp.textContent === "" || disp.textContent === "Y u do dis?") {
+//       return
+//     }
+//     if (opr === null) {
+//       previousNum = currentNum;
+//     } else if (previousNum != null) {
+//       disp.textContent = "";
+//       previousNum = operate(previousNum, currentNum);
+//       console.log(previousNum);
+//     }
+//     opr = e.target.innerText;
+//     console.log(opr);
+//     currentNum = "";
+//     numsCleared = true;
+//     operatorClear = true;
+//   });
+// });
 
 // handles % button
 percentageBtn.addEventListener('click', (e) => {
@@ -95,19 +119,21 @@ percentageBtn.addEventListener('click', (e) => {
 // it is input before a number
 decimalBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
+  decimal = e.target.innerText;
   if (disp.textContent === "") {
-    return
+    disp.textContent = 0 + decimal;
+    currentNum = 0 + decimal;
   } else if (disp.textContent.includes(".")) {
     return
+  } else {
+    disp.textContent = currentNum + decimal;
+    currentNum = currentNum + ".";
   }
-  decimal = e.target.innerText;
-  disp.textContent = currentNum + decimal;
-  currentNum = currentNum + ".";
 });
 
 // handles plus/minus button
 // TODO: bug where if you press this btn immediately after an operator btn
-// has beebn pressed after a number, it does not work
+// has been pressed after a number, it does not work
 // works every other time, i think it may require refactoring
 // most of my code to get it to work,
 // considering it is not part of the assgt im leaving as is for now lol
@@ -181,6 +207,7 @@ function limitDigitsOnDisplay() {
 }
 
 function add(a, b) {
+  console.log(a + b);
   result = a + b;
   limitDigitsOnDisplay();
   disp.textContent += result;
@@ -188,6 +215,7 @@ function add(a, b) {
 };
 
 function sub(a, b) {
+  console.log(a - b);
   result = a - b;
   limitDigitsOnDisplay();
   disp.textContent += result;
