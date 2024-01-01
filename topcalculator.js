@@ -33,6 +33,7 @@ numbers.forEach((number) => {
   number.addEventListener('click', () => {
     if (disp.textContent === "Y u do dis?") {
       clearBtn();
+      return
     };
     clearOnNextNum();
     if (disp.textContent.length < 8) {
@@ -43,6 +44,31 @@ numbers.forEach((number) => {
     };
   });
 });
+
+// handles operator buttons
+operator.forEach((button) => {
+  button.addEventListener('click', operatorHandler)
+});
+
+function operatorHandler(e) {
+  if (disp.textContent === "Y u do dis?" || disp.textContent === "") {
+    return
+  }
+  if (currentNum === "" && previousNum !== null) {
+    return
+  }
+  if (opr === null) {
+    previousNum = currentNum;
+  } else if (previousNum != null) {
+    disp.textContent = "";
+    previousNum = operate(previousNum, currentNum);
+    console.log(previousNum);
+  }
+  opr = e.target.innerText;
+  console.log(opr);
+  currentNum = "";
+  numsCleared = true;
+}
 
 // handles equals button
 equals.addEventListener('click', (e) => {
@@ -58,34 +84,6 @@ equals.addEventListener('click', (e) => {
     equalsCleared = true;
   }
 });
-
-let operatorClear = false;
-
-// handles operator buttons
-// TODO: known bug, you can double click operators and it causes issues
-// not sure how to fix, tried several solutions and nothing has worked without
-// breaking something else. Tbf this is not part of the assgt so will leave for now
-// This is now not working at all lol
-if (disp.textContent !== "" || disp.textContent !== "Y u do dis?") {
-  operator.forEach((button) => {
-    button.addEventListener('click', operatorHandler)
-  });
-};
-
-function operatorHandler(e) {
-  if (opr === null) {
-    previousNum = currentNum;
-  } else if (previousNum != null) {
-    disp.textContent = "";
-    previousNum = operate(previousNum, currentNum);
-    console.log(previousNum);
-  }
-  opr = e.target.innerText;
-  console.log(opr);
-  currentNum = "";
-  numsCleared = true;
-  operatorClear = true;
-}
 
 // handles % button
 percentageBtn.addEventListener('click', (e) => {
