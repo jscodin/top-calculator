@@ -228,16 +228,17 @@ function divide(a, b) {
     disp.textContent += "Y u do dis?";
     return "Y u do dis?";
   }
-  disp.textContent += a / b;
-  // result = a - b;
-  // limitDigitsOnDisplay();
-  // disp.textContent += result;
+  result = a / b;
+  limitDigitsOnDisplay();
+  disp.textContent += result;
   return a / b
 };
 
 function multiply(a, b) {
   console.log(a * b);
-  disp.textContent += a * b;
+  result = a * b;
+  limitDigitsOnDisplay();
+  disp.textContent += result;
   return a * b
 };
 
