@@ -97,7 +97,7 @@ percentageBtn.addEventListener('click', (e) => {
 
 // handles decimal button
 // TODO: need to figure out to how to get it show a "0" when
-// it is input before a number
+// it is input before a number when screen is empty but not after operators are pressed etc.
 decimalBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
   decimal = e.target.innerText;
@@ -156,11 +156,17 @@ function clearBtn() {
 }
 
 // delete last number input
-// TODO: numbers get cleared from display but not from variable
 const del = document.querySelector("#delete");
 del.addEventListener('click', () => {
-  disp.textContent = disp.textContent.slice(0, -1);
-  numsOnDisp = disp.textContent;
+  if (currentNum && previousNum === null) {
+    disp.textContent = disp.textContent.slice(0, -1);
+    currentNum = parseFloat(currentNum.toString().slice(0, -1));
+    console.log(currentNum);
+  } else if (currentNum !== null && previousNum !== null) {
+    disp.textContent = disp.textContent.slice(0, -1);
+    currentNum = parseFloat(currentNum.toString().slice(0, -1));
+    console.log(currentNum);
+  }
 });
 
 // chooses which basic calc to use based on operator clicked
