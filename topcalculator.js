@@ -96,8 +96,8 @@ percentageBtn.addEventListener('click', (e) => {
 });
 
 // handles decimal button
-// TODO: need to figure out to how to get it show a "0" when
-// it is input before a number when screen is empty but not after operators are pressed etc.
+// TODO: works sometimes but not always, needs a bit more debugging but fine for assgt tbh
+// TODO: && need to add rounding support
 decimalBtn.addEventListener('click', (e) => {
   console.log(e.target.innerText);
   decimal = e.target.innerText;
@@ -148,6 +148,14 @@ plusminusBtn.addEventListener('click', (e) => {
 const clear = document.querySelector("#clear");
 clear.addEventListener('click', clearBtn);
 
+// keyboard support
+document.addEventListener('keydown', e => {
+  if (e.key === 'Delete') {
+    console.log("its workin");
+    clearBtn();
+  }
+});
+
 function clearBtn() {
   disp.textContent = "";
   currentNum = "";
@@ -167,6 +175,14 @@ del.addEventListener('click', () => {
     currentNum = parseFloat(currentNum.toString().slice(0, -1));
     console.log(currentNum);
   }
+});
+
+// testing keyboard buttons
+// key is more specific and code is standard across layouts
+document.addEventListener('keydown', function(e) {
+  let keycode = e.code
+  let key = e.key
+  console.log(keycode, key);
 });
 
 // chooses which basic calc to use based on operator clicked
@@ -242,3 +258,14 @@ function percentage() {
     return b / 100;
   }
 };
+
+
+
+
+
+
+
+
+
+
+
