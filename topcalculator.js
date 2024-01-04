@@ -165,7 +165,17 @@ function clearBtn() {
 
 // delete last number input
 const del = document.querySelector("#delete");
-del.addEventListener('click', () => {
+del.addEventListener('click', deleteLastDigit);
+
+// keyboard support
+document.addEventListener('keydown', e => {
+  if (e.key === 'Backspace') {
+    console.log("its workin");
+    deleteLastDigit();
+  }
+});
+
+function deleteLastDigit() {
   if (currentNum && previousNum === null) {
     disp.textContent = disp.textContent.slice(0, -1);
     currentNum = parseFloat(currentNum.toString().slice(0, -1));
@@ -175,7 +185,7 @@ del.addEventListener('click', () => {
     currentNum = parseFloat(currentNum.toString().slice(0, -1));
     console.log(currentNum);
   }
-});
+};
 
 // testing keyboard buttons
 // key is more specific and code is standard across layouts
