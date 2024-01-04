@@ -7,6 +7,7 @@ const operator = document.querySelectorAll(".operator");
 const percentageBtn = document.querySelector("#percent");
 const decimalBtn = document.querySelector("#decimal");
 const plusminusBtn = document.querySelector("#plusminus");
+const clear = document.querySelector("#clear");
 let decimal;
 let plusminus;
 let currentNum = "";
@@ -86,14 +87,21 @@ equals.addEventListener('click', (e) => {
 });
 
 // handles % button
-percentageBtn.addEventListener('click', (e) => {
-  console.log(e.target.innerText);
+percentageBtn.addEventListener('click', validateBeforePercentage);
+
+document.addEventListener('keydown', e => {
+  if (e.key === '%') {
+    validateBeforePercentage();
+  }
+});
+
+function validateBeforePercentage() {
   if (disp.textContent === "") {
     return
   }
   disp.textContent = "";
   currentNum = percentage();
-});
+}
 
 // handles decimal button
 // TODO: works sometimes but not always, needs a bit more debugging but fine for assgt tbh
@@ -145,7 +153,6 @@ plusminusBtn.addEventListener('click', (e) => {
 });
 
 // clear display & variables using ac button
-const clear = document.querySelector("#clear");
 clear.addEventListener('click', clearBtn);
 
 // keyboard support
