@@ -72,9 +72,16 @@ function operatorHandler(e) {
 }
 
 // handles equals button
-equals.addEventListener('click', (e) => {
-  equalBtn = e.target.innerText;
-  console.log(equalBtn);
+equals.addEventListener('click', equalBtn);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    equalBtn();
+  }
+});
+
+function equalBtn() {
   if (disp.textContent === "" || equalsCleared) {
     return
   } else if (currentNum !== null && previousNum !== null) {
@@ -84,7 +91,7 @@ equals.addEventListener('click', (e) => {
     opr = null;
     equalsCleared = true;
   }
-});
+}
 
 // handles % button
 percentageBtn.addEventListener('click', validateBeforePercentage);
