@@ -112,10 +112,11 @@ function validateBeforePercentage() {
 
 // handles decimal button
 // TODO: works sometimes but not always, needs a bit more debugging but fine for assgt tbh
-// TODO: && need to add rounding support
-decimalBtn.addEventListener('click', (e) => {
-  console.log(e.target.innerText);
-  decimal = e.target.innerText;
+decimalBtn.addEventListener('click', inputDecimal);
+
+function inputDecimal() {
+  decimal = decimalBtn.innerText;
+  console.log(decimal);
   if (disp.textContent === "") {
     disp.textContent = 0 + decimal;
     currentNum = 0 + decimal;
@@ -125,7 +126,7 @@ decimalBtn.addEventListener('click', (e) => {
     disp.textContent = currentNum + decimal;
     currentNum = currentNum + ".";
   }
-});
+};
 
 // handles plus/minus button
 // TODO: bug where if you press this btn immediately after an operator btn
@@ -226,7 +227,7 @@ function operate(previousNum, currentNum) {
 
 // calculations
 let result;
-
+// TODO: add rounding support for decimals
 function limitDigitsOnDisplay() {
   if (result.toString().length > 8) {
     result = Number.parseFloat(result).toExponential(2)
