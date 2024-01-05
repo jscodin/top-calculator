@@ -21,8 +21,12 @@ function clearOnNextNum() {
   if (numsCleared) {
     numsCleared = false;
     disp.textContent = "";
+  } else if (opr === null && equalsCleared && previousNum !== "") {
+    disp.textContent = "";
+    currentNum = "";
+    equalsCleared = false;
   }
-  else if (equalsCleared && previousNum != "") {
+  else if (equalsCleared && previousNum !== "") {
     disp.textContent = "";
     equalsCleared = false;
   }
@@ -90,6 +94,7 @@ function equalBtn() {
     console.log(previousNum);
     opr = null;
     equalsCleared = true;
+    // currentNum = "";
   }
 }
 
@@ -113,6 +118,12 @@ function validateBeforePercentage() {
 // handles decimal button
 // TODO: works sometimes but not always, needs a bit more debugging but fine for assgt tbh
 decimalBtn.addEventListener('click', inputDecimal);
+
+document.addEventListener('keydown', e => {
+  if (e.key === '.') {
+    inputDecimal();
+  }
+});
 
 function inputDecimal() {
   decimal = decimalBtn.innerText;
