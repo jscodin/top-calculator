@@ -55,6 +55,13 @@ operator.forEach((button) => {
   button.addEventListener('click', operatorHandler)
 });
 
+document.addEventListener('keydown', e => {
+  if (e.key === '+' || e.key === '/' || e.key === '-' || e.key === '*') {
+    operatorHandler(e);
+  }
+  return
+});
+
 function operatorHandler(e) {
   if (disp.textContent === "Y u do dis?" || disp.textContent === "") {
     return
@@ -69,7 +76,9 @@ function operatorHandler(e) {
     previousNum = operate(previousNum, currentNum);
     console.log(previousNum);
   }
-  opr = e.target.innerText;
+  if (e.key || e.target.innerText) {
+    opr = e.key || e.target.innerText;
+  };
   console.log(opr);
   currentNum = "";
   numsCleared = true;
@@ -124,7 +133,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// TODO: issue when screen is empty and this is called
 function inputDecimal() {
   decimal = decimalBtn.innerText;
   console.log(decimal);
