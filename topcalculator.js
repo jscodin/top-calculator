@@ -125,15 +125,21 @@ document.addEventListener('keydown', e => {
   }
 });
 
+// } else if (disp.textcontent.includes(".")) {
 function inputDecimal() {
   decimal = decimalBtn.innerText;
   console.log(decimal);
   if (disp.textContent === "") {
     disp.textContent = 0 + decimal;
     currentNum = 0 + decimal;
-  } else if (disp.textContent.includes(".")) {
+  } else if (currentNum.toString().includes(".") || currentNum.toString().includes(".")) {
     return
-  } else {
+  } else if (currentNum === "") {
+    disp.textContent = 0 + decimal;
+    currentNum = 0 + decimal;
+    numsCleared = false;
+  }
+  else {
     disp.textContent = currentNum + decimal;
     currentNum = currentNum + ".";
   }
