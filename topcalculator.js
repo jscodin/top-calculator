@@ -35,20 +35,22 @@ function clearOnNextNum() {
 
 // handles number buttons
 numbers.forEach((number) => {
-  number.addEventListener('click', () => {
-    if (disp.textContent === "Y u do dis?") {
-      clearBtn();
-      return
-    };
-    clearOnNextNum();
-    if (disp.textContent.length < 8) {
-      disp.textContent += number.id
-      currentNum += number.id;
-      currentNum = parseFloat(currentNum);
-      console.log(currentNum);
-    };
-  });
+  number.addEventListener('click', numberHandler)
 });
+
+function numberHandler(e) {
+  if (disp.textContent === "Y u do dis?") {
+    clearBtn();
+    return
+  };
+  clearOnNextNum();
+  if (disp.textContent.length < 8) {
+    disp.textContent += e.target.innerText;
+    currentNum += e.target.innerText;
+    currentNum = parseFloat(currentNum);
+    console.log(currentNum);
+  };
+};
 
 // handles operator buttons
 operator.forEach((button) => {
