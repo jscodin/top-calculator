@@ -116,7 +116,6 @@ function validateBeforePercentage() {
 }
 
 // handles decimal button
-// TODO: works sometimes but not always, needs a bit more debugging but fine for assgt tbh
 decimalBtn.addEventListener('click', inputDecimal);
 
 document.addEventListener('keydown', e => {
@@ -125,7 +124,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// } else if (disp.textcontent.includes(".")) {
+// TODO: issue when screen is empty and this is called
 function inputDecimal() {
   decimal = decimalBtn.innerText;
   console.log(decimal);
@@ -244,10 +243,16 @@ function operate(previousNum, currentNum) {
 
 // calculations
 let result;
-// TODO: add rounding support for decimals
+
 function limitDigitsOnDisplay() {
-  if (result.toString().length > 8) {
-    result = Number.parseFloat(result).toExponential(2)
+  if (result.toString().length > 8 && result.toString().includes(".")) {
+    if (Math.trunc(result * 100000) / 100000 > 8) {
+      result = Number.parseFloat(result).toExponential(2)
+    } else {
+      result = Math.trunc(result * 100000) / 100000;
+    }
+  } else if (result.toString().length > 8) {
+    result = Number.parseFloat(result).toExponential(2);
   }
 }
 
@@ -257,7 +262,7 @@ function add(a, b) {
   limitDigitsOnDisplay();
   disp.textContent += result;
   return a + b
-};
+}
 
 function sub(a, b) {
   console.log(a - b);
