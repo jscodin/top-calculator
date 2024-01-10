@@ -38,6 +38,41 @@ numbers.forEach((number) => {
   number.addEventListener('click', numberHandler)
 });
 
+document.addEventListener('keydown', e => {
+  switch (e.key) {
+    case "1":
+      numberHandler(e);
+      break;
+    case "2":
+      numberHandler(e);
+      break;
+    case "3":
+      numberHandler(e);
+      break;
+    case "4":
+      numberHandler(e);
+      break;
+    case "5":
+      numberHandler(e);
+      break;
+    case "6":
+      numberHandler(e);
+      break;
+    case "7":
+      numberHandler(e);
+      break;
+    case "8":
+      numberHandler(e);
+      break;
+    case "9":
+      numberHandler(e);
+      break;
+    case "0":
+      numberHandler(e);
+      break;
+  }
+});
+
 function numberHandler(e) {
   if (disp.textContent === "Y u do dis?") {
     clearBtn();
@@ -45,10 +80,12 @@ function numberHandler(e) {
   };
   clearOnNextNum();
   if (disp.textContent.length < 8) {
-    disp.textContent += e.target.innerText;
-    currentNum += e.target.innerText;
-    currentNum = parseFloat(currentNum);
-    console.log(currentNum);
+    if (e.key || e.target.innerText) {
+      disp.textContent += e.key || e.target.innerText;
+      currentNum += e.key || e.target.innerText;
+      currentNum = parseFloat(currentNum);
+      console.log(currentNum);
+    }
   };
 };
 
@@ -208,13 +245,13 @@ function clearBtn() {
 const del = document.querySelector("#delete");
 del.addEventListener('click', deleteLastDigit);
 
-// keyboard support
-document.addEventListener('keydown', e => {
-  if (e.key === 'Backspace') {
-    console.log("its workin");
-    deleteLastDigit();
-  }
-});
+// keyboard support test
+// document.addEventListener('keydown', e => {
+//   if (e.key === 'Backspace') {
+//     console.log("its workin");
+//     deleteLastDigit();
+//   }
+// });
 
 function deleteLastDigit() {
   if (currentNum && previousNum === null) {
@@ -315,14 +352,6 @@ function percentage() {
     return b / 100;
   }
 };
-
-
-
-
-
-
-
-
 
 
 
