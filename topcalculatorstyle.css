@@ -9,7 +9,7 @@
 #calc-wrapper {
   display: grid;
   background-image: url('calcbg2.jpg');
-  box-shadow: 10px 10px 5px;
+  box-shadow: 10px 10px 10px;
   height: 485px;
   width: 381px;
   border: 1px solid white;
@@ -21,7 +21,8 @@
 
 .display {
   display: block;
-  background: lightgray;
+  opacity: 0.5;
+  background: white;
   border: 1px solid black;
   height: 80px;
   width: 361px;
@@ -32,6 +33,7 @@
 
 .button-wrapper {
   display: grid;
+  opacity: 0.5;
   margin: 10px;
   grid-template-rows: repeat(5, 70px, );
   grid-template-columns: repeat(4, 90px);
@@ -42,4 +44,9 @@ button {
   background: white;
   min-width: 90px;
   min-height: 70px;
+}
+
+button:hover {
+  background-color: lightgray;
+  opacity: 1;
 }
